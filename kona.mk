@@ -276,15 +276,20 @@ TARGET_SUPPORTS_OMX_SERVICE := false
 
 # Overlays
 PRODUCT_PACKAGES += \
-    CarrierConfigOverlayCommon \
     FrameworkResOverlayCommon \
     LineageSDKOverlayCommon \
     LineageSettingsOverlayCommon \
     SettingsOverlayCommon \
     SettingsProviderOverlayCommon \
     SystemUIOverlayCommon \
-    TelephonyOverlayCommon \
     WifiResourcesOverlayCommon
+
+ifneq ($(TARGET_IS_TABLET),true)
+PRODUCT_PACKAGES += \
+    CarrierConfigOverlayCommon \
+    FrameworkResOverlayPhoneCommon \
+    TelephonyOverlayCommon
+endif
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
